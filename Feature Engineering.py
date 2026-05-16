@@ -23,24 +23,13 @@ from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 warnings.filterwarnings('ignore')
 
-
-# ============================================
-# PART 1: DOWNLOAD 100+ PAGE PDF FROM GOOGLE SCHOLAR
-# ============================================
-
 print("\n" + "="*70)
-print("Q1(a): PDF READING AND TEXT EXTRACTION")
+print("PDF READING AND TEXT EXTRACTION")
 print("="*70)
 
-# Option 1: Attention is All You Need (50-60 pages but highly cited)
-# Option 2: ACM Computing Surveys article (100+ pages typical for survey papers)
-# Let's use a comprehensive survey paper with 100+ pages
-
-# Using arXiv paper with 100+ pages (includes full transformer paper + references)
-pdf_url = " https://arxiv.org/pdf/2303.08774.pdf"
+pdf_url ="https://arxiv.org/pdf/2303.08774.pdf"
 print(f"\n Downloading PDF from: {pdf_url}")
 
-# Download PDF
 response = requests.get(pdf_url, stream=True)
 total_size = int(response.headers.get('content-length', 0))
 
@@ -52,12 +41,7 @@ with open("academic_paper.pdf", "wb") as f:
 
 print(" PDF downloaded successfully!")
 
-# ============================================
-# PART 1(a): EXTRACT TEXT FROM PDF
-# ============================================
-
 def extract_text_from_pdf(pdf_path):
-    """Extract text from all pages of PDF"""
     all_text = ""
     page_texts = []
     
@@ -75,20 +59,17 @@ def extract_text_from_pdf(pdf_path):
             
     return all_text, page_texts, total_pages
 
-# Extract text
 extracted_text, page_texts, total_pages = extract_text_from_pdf("academic_paper.pdf")
 
 print(f"\n Total characters extracted: {len(extracted_text):,}")
 print(f" Total words extracted: {len(extracted_text.split()):,}")
 
-# Show sample extracted text
 print("\n" + "-"*50)
 print("SAMPLE EXTRACTED TEXT (First 1000 characters):")
 print("-"*50)
 print(extracted_text[:1000])
 print("\n...(text continues)...\n")
 
-# Verify 100+ pages
 if total_pages >= 100:
     print(f"SUCCESS: PDF has {total_pages} pages (meets 100+ page requirement)")
 else:
@@ -102,9 +83,7 @@ print("\n" + "="*70)
 print("Q1(b): TEXT PREPROCESSING")
 print("="*70)
 
-class TextPreprocessor:
-    """Complete text preprocessing with Regex patterns"""
-    
+class TextPreprocessor:    
     def __init__(self):
         self.stop_words = set(stopwords.words('english'))
         self.stemmer = PorterStemmer()
@@ -117,7 +96,6 @@ class TextPreprocessor:
         }
     
     def show_regex_patterns(self):
-        """Display all regex patterns used"""
         print("\n REGEX PATTERNS USED:")
         print("-" * 40)
         for name, pattern in self.regex_patterns.items():
@@ -125,90 +103,68 @@ class TextPreprocessor:
         print("-" * 40)
     
     def convert_lowercase(self, text):
-        """Convert text to lowercase"""
         return text.lower()
     
     def remove_numbers(self, text):
-        """Remove numbers using Regex: \d+"""
         return re.sub(self.regex_patterns['numbers'], '', text)
     
     def remove_special_symbols(self, text):
-        """Remove special symbols using Regex: [^a-zA-Z\s]"""
         return re.sub(self.regex_patterns['special_chars'], '', text)
     
     def remove_extra_spaces(self, text):
-        """Remove extra spaces using Regex: \s+"""
         return re.sub(self.regex_patterns['extra_spaces'], ' ', text).strip()
     
     def remove_punctuation(self, text):
-        """Remove punctuation using Regex: [^\w\s]"""
         return re.sub(self.regex_patterns['punctuation'], '', text)
     
     def tokenize(self, text):
-        """Tokenize text into words"""
         return word_tokenize(text)
     
     def remove_stopwords(self, tokens):
-        """Remove stop words from tokens"""
         stopwords_count = sum(1 for token in tokens if token.lower() in self.stop_words)
         valid_tokens = [token for token in tokens if token.lower() not in self.stop_words]
         return valid_tokens, stopwords_count
     
     def apply_stemming(self, tokens):
-        """Apply stemming (Porter Stemmer)"""
         return [self.stemmer.stem(token) for token in tokens]
     
     def apply_lemmatization(self, tokens):
-        """Apply lemmatization (WordNet Lemmatizer)"""
         return [self.lemmatizer.lemmatize(token) for token in tokens]
     
-    def preprocess(self, text, sample_size=20000):
-        """Complete preprocessing pipeline with sample limiting for efficiency"""
-        
-        # Show regex patterns
+    def preprocess(self, text, sample_size=20000):        
         self.show_regex_patterns()
         
-        # Use a representative sample
         text_sample = text[:sample_size]
         
         print(f"\nProcessing {len(text_sample):,} characters of text...")
         print("\n PREPROCESSING STEPS:")
         print("-" * 40)
         
-        # Step 1: Lowercase
         text = self.convert_lowercase(text_sample)
         print(" Step 1: Converted to lowercase")
         
-        # Step 2: Remove numbers
         text = self.remove_numbers(text)
         print(" Step 2: Removed numbers")
         
-        # Step 3: Remove special symbols
         text = self.remove_special_symbols(text)
         print("Step 3: Removed special symbols")
         
-        # Step 4: Remove extra spaces
         text = self.remove_extra_spaces(text)
         print(" Step 4: Removed extra spaces")
         
-        # Step 5: Remove punctuation
         text = self.remove_punctuation(text)
         print(" Step 5: Removed punctuation")
         
-        # Step 6: Tokenize
         tokens = self.tokenize(text)
         print(f" Step 6: Tokenization complete → {len(tokens):,} tokens")
         
-        # Step 7: Remove stopwords
         valid_tokens, stopword_count = self.remove_stopwords(tokens)
         print(f" Step 7: Removed {stopword_count:,} stop words")
         print(f"          → {len(valid_tokens):,} valid words remaining")
         
-        # Step 8: Apply stemming
         stemmed_tokens = self.apply_stemming(valid_tokens[:1000])  # Sample for display
         print(f" Step 8: Stemming applied (sample: {stemmed_tokens[:5]}...)")
         
-        # Step 9: Apply lemmatization
         lemmatized_tokens = self.apply_lemmatization(valid_tokens[:1000])
         print(f" Step 9: Lemmatization applied (sample: {lemmatized_tokens[:5]}...)")
         
@@ -221,8 +177,6 @@ class TextPreprocessor:
             'stemmed_sample': stemmed_tokens[:20],
             'lemmatized_sample': lemmatized_tokens[:20]
         }
-
-# Initialize preprocessor and process text
 preprocessor = TextPreprocessor()
 preprocessed = preprocessor.preprocess(extracted_text, sample_size=20000)
 
@@ -292,7 +246,6 @@ stats_df = pd.DataFrame({
                 f"{(1 - preprocessed['total_tokens_after']/preprocessed['total_tokens_before'])*100:.1f}%"
     ]
 })
-
 print(stats_df.to_string(index=False))
 
 # ============================================
@@ -300,21 +253,18 @@ print(stats_df.to_string(index=False))
 # ============================================
 
 print("\n" + "="*70)
-print("Q1(c): FEATURE EXTRACTION")
+print("FEATURE EXTRACTION")
 print("="*70)
 print("\n ONE HOT ENCODING")
 print("-" * 40)
 
-# Create document samples from sentences
 sentences = [s.strip() for s in preprocessed['cleaned_text'].split('.') if len(s.strip()) > 30][:8]
 
 print(f"Processing {len(sentences)} document samples...")
 
-# Get vocabulary from processed tokens
 vocabulary = list(set(preprocessed['tokens'][:30]))  # Top 30 unique words
 
 def create_one_hot_matrix(sentences, vocabulary):
-    """Create one-hot encoding matrix"""
     matrix = []
     for sent in sentences:
         sent_tokens = set(word_tokenize(sent.lower()))
@@ -339,22 +289,18 @@ print("\n" + "="*70)
 print(" TF-IDF (Term Frequency-Inverse Document Frequency)")
 print("="*70)
 
-# Initialize TF-IDF Vectorizer
 tfidf_vectorizer = TfidfVectorizer(max_features=50, stop_words='english')
 tfidf_matrix = tfidf_vectorizer.fit_transform(sentences)
 
-# Get feature names
 feature_names = tfidf_vectorizer.get_feature_names_out()
 print(f"\n TF-IDF Feature Names: {len(feature_names)} features")
 print(f"Sample features: {list(feature_names[:15])}")
 
-# Convert to DataFrame
 tfidf_df = pd.DataFrame(
     tfidf_matrix.toarray(),
     columns=feature_names,
     index=[f"Doc_{i+1}" for i in range(len(sentences))]
 )
-
 print("\nTF-IDF VALUES MATRIX:")
 print("=" * 80)
 print(tfidf_df.round(4).to_string())
@@ -375,15 +321,12 @@ print("\n" + "="*70)
 print("Q1(d): TF-IDF SCATTER PLOT (PLOTLY)")
 print("="*70)
 
-# Prepare data for visualization
 plot_data = pd.DataFrame({
     'Word': feature_names,
     'TF_IDF_Score': avg_tfidf
 }).sort_values('TF_IDF_Score', ascending=False).head(25)
 
-# Create interactive scatter plot
 fig = go.Figure()
-
 fig.add_trace(go.Scatter(
     x=plot_data['TF_IDF_Score'],
     y=plot_data['Word'],
@@ -402,7 +345,6 @@ fig.add_trace(go.Scatter(
     hovertemplate='<b>%{text}</b><br>TF-IDF Score: %{x:.4f}<extra></extra>'
 ))
 
-# Customize layout
 fig.update_layout(
     title=dict(
         text=' TF-IDF Score Distribution Across Words',
@@ -428,22 +370,17 @@ fig.update_layout(
     hovermode='closest',
     font=dict(family='Arial')
 )
-
-# Add annotations
 fig.add_annotation(
     x=0.02, y=0.98, xref='paper', yref='paper',
     text=f"<b>Total Words: {len(feature_names)} | Documents: {len(sentences)}</b>",
     showarrow=False,
     font=dict(size=12, color='gray')
 )
-
 fig.show()
 
-# Save the plot
 fig.write_html("tfidf_scatter_plot.html")
 print("\n Plot saved as 'tfidf_scatter_plot.html'")
 
-# Create bubble chart alternative
 fig2 = px.scatter(
     plot_data,
     x='TF_IDF_Score',
@@ -457,19 +394,16 @@ fig2 = px.scatter(
     size_max=40,
     hover_data={'Word': True, 'TF_IDF_Score': ':.4f'}
 )
-
 fig2.update_traces(
     textposition='middle right',
     marker=dict(line=dict(width=1, color='black'))
 )
-
 fig2.update_layout(
     title_font_size=20,
     width=1000,
     height=600,
     plot_bgcolor='white'
 )
-
 fig2.show()
 fig2.write_html("tfidf_bubble_chart.html")
 print("Bubble chart saved as 'tfidf_bubble_chart.html'")
@@ -482,7 +416,6 @@ print("\n" + "="*70)
 print("SAVING RESULTS TO FILES")
 print("="*70)
 
-# Save preprocessing results
 with open('preprocessing_results.txt', 'w', encoding='utf-8') as f:
     f.write("="*70 + "\n")
     f.write("NLP TEXT PREPROCESSING RESULTS\n")
@@ -492,20 +425,19 @@ with open('preprocessing_results.txt', 'w', encoding='utf-8') as f:
     f.write(f"Total Characters: {len(extracted_text):,}\n")
     f.write(f"Total Words: {len(extracted_text.split()):,}\n\n")
     f.write("REGEX PATTERNS USED:\n")
+    
     for name, pattern in preprocessor.regex_patterns.items():
         f.write(f"  {name}: {pattern}\n")
     f.write(f"\nStop Words Removed: {preprocessed['stopword_count']:,}\n")
     f.write(f"Valid Words After Preprocessing: {preprocessed['total_tokens_after']:,}\n")
-    f.write(f"Data Reduction Rate: {(1 - preprocessed['total_tokens_after']/preprocessed['total_tokens_before'])*100:.1f}%\n")
+    f.write(f"Data Reduction Rate: {(1 - preprocessed['total_tokens_after']/preprocessed['total_tokens_before'])*100:}%\n")
     f.write(f"\nSample Cleaned Text:\n{preprocessed['cleaned_text'][:500]}\n")
 
 print("Saved: preprocessing_results.txt")
 
-# Save TF-IDF results
 tfidf_df.to_csv('tfidf_results.csv')
 print("Saved: tfidf_results.csv")
 
-# Save One-Hot Encoding results
 ohe_df.to_csv('onehot_encoding_results.csv')
 print("Saved: onehot_encoding_results.csv")
 
@@ -533,7 +465,6 @@ checklist = [
     " Plotly scatter plot created and saved",
     " All outputs saved to files"
 ]
-
 for item in checklist:
     print(item)
 
@@ -545,7 +476,3 @@ for file in output_files:
     if os.path.exists(file):
         size = os.path.getsize(file) / 1024
         print(f" {file} ({size:.1f} KB)")
-
-print("\n" + "="*70)
-print("SUBMISSION READY - CAN BE UPLOADED TO GITHUB AND KAGGLE")
-print("="*70)
