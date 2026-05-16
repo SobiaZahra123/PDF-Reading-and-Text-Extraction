@@ -19,38 +19,6 @@ from Google Scholar. The assignment demonstrates practical application of:
 
 # Features     
 
-Q1(a): PDF Reading and Text Extraction
-Read PDF files using pypdf library
-Extract text from all 120 pages
-Display total pages and sample text
-Character count statistics
-Q1(b): Text Preprocessing
-Lowercase Conversion: Convert all text to lowercase
-Remove Numbers: Using regex pattern r'\d+'
-Remove Special Symbols: Using regex pattern r'[^a-zA-Z\s]'
-Remove Extra Spaces: Using regex pattern r'\s+'
-Tokenization: Split text into individual words
-Stop Word Removal: Remove common English words
-Stemming: Apply Porter Stemmer algorithm
-Lemmatization: Apply WordNet Lemmatizer
-Statistics: Display counts of stop words and valid words
-Q1(c): Feature Extraction
-One-Hot Encoding
-Convert words into binary matrix representation
-Tabular display of encoding results
-Useful for machine learning algorithms
-TF-IDF (Term Frequency-Inverse Document Frequency)
-Calculate importance of words in documents
-Feature name extraction
-Tabular display of TF-IDF values
-Identify most relevant words
-Q1(d): Visualization
-TF-IDF Scatter Plot using Matplotlib
-Word index on X-axis
-TF-IDF scores on Y-axis
-Word labels displayed on plot
-Proper title and axis labels
-Saved as PNG image
 #  PDF Reading and Text Extraction
 1. Selected PDF with 100+ pages from Google Scholar
 2. Read PDF using PyPDF2/PyMuPDF
@@ -100,6 +68,16 @@ import pandas as pd
 import plotly.graph_objects as go
 from sklearn.feature_extraction.text import TfidfVectorizer
 Step 2: Download 100+ Page PDF from Google Scholar
+
+ ├── 📄 README.md                        
+├── 📓 nlp_preprocessing.ipynb         
+├── 📄 academic_paper.pdf                
+├── 📊 tfidf_scatter_plot.html           
+├── 📊 tfidf_bubble_chart.html       
+├── 📈 tfidf_results.csv               
+├── 📈 onehot_encoding_results.csv       
+├── 📝 preprocessing_results.txt         
+├── 📦 requirements.txt  
 
 # PDF URL from Google Scholar (100+ pages)
 pdf_url =  https://arxiv.org/pdf/2303.08774.pdf
