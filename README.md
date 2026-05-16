@@ -59,15 +59,15 @@ bash
 python --version
 
 # Step-by-Step Code Execution Guide
-Step 1: Import Libraries
-python
-import PyPDF2
-import re
-import nltk
-import pandas as pd
-import plotly.graph_objects as go
-from sklearn.feature_extraction.text import TfidfVectorizer
-Step 2: Download 100+ Page PDF from Google Scholar
+✓ Step 1: Import Libraries.
+✓ python.
+✓ import PyPDF2.
+✓ import re.
+✓ import nltk.
+✓ import pandas as pd.
+✓ import plotly.graph_objects as go.
+✓ from sklearn.feature_extraction.text import TfidfVectorizer.
+# Step 2: Download 100+ Page PDF from Google Scholar
 
  ├── 📄 README.md                        
 ├── 📓 nlp_preprocessing.ipynb         
