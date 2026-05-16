@@ -2,12 +2,12 @@
 This project implements complete Natural Language Processing (NLP) text processing on a real PDF document with 100+ pages
 from Google Scholar. The assignment demonstrates practical application of:
 
-✅ PDF text extraction from academic papers
-✅ Comprehensive text preprocessing using Regular Expressions (Regex)
-✅ Tokenization, stop word removal, stemming, and lemmatization
-✅ Feature extraction techniques: One-Hot Encoding and TF-IDF
-✅ Interactive data visualization using Plotly
-✅ Complete NLP pipeline from raw text to analysis
+1. PDF text extraction from academic papers.
+2. Comprehensive text preprocessing using Regular Expressions (Regex).
+3. Tokenization, stop word removal, stemming, and lemmatization.
+4. Feature extraction techniques: One-Hot Encoding and TF-IDF.
+5. Interactive data visualization using Plotly.
+6. Complete NLP pipeline from raw text to analysis.
 
 #  Learning Objectives
 1. How to extract and process text from large PDF documents
@@ -29,52 +29,39 @@ text
 ├── 📦 requirements.txt                   
 ├── 🐍 setup.sh                           
 ├── 🐍 setup.bat                         
-├── 📸 screenshots/                       #
-│   ├── 01_pdf_reading.png
-│   ├── 02_total_pages.png
-│   ├── 03_sample_text.png
-│   ├── 04_regex_preprocessing.png
-│   ├── 05_stopword_count.png
-│   ├── 06_valid_word_count.png
-│   ├── 07_stemming_output.png
-│   ├── 08_lemmatization_output.png
-│   ├── 09_one_hot_encoding.png
-│   ├── 10_tfidf_output.png
-│   ├── 11_plotly_scatter.png
-│   ├── 12_github_repo.png
-│   └── 13_kaggle_notebook.png
-└── 🔧 .gitignore                       
+└── 🔧 .gitignore      
+
 #  PDF Reading and Text Extraction
-✅ Selected PDF with 100+ pages from Google Scholar
-✅ Read PDF using PyPDF2/PyMuPDF
-✅ Extracted text from all pages
-✅ Displayed total number of pages
-✅ Showed sample extracted text
+1. Selected PDF with 100+ pages from Google Scholar
+2. Read PDF using PyPDF2/PyMuPDF
+3. Extracted text from all pages
+4. Displayed total number of pages
+5. Showed sample extracted text
 
 #  Text Preprocessing with Regex
-✅ Converted text to lowercase
-✅ Removed numbers using Regex: \d+
-✅ Removed special symbols using Regex: [^a-zA-Z\s]
-✅ Removed extra spaces using Regex: \s+
-✅ Removed punctuation using Regex: [^\w\s]
-✅ Tokenized text into words
-✅ Applied stop word removal
-✅ Displayed stop word count
-✅ Displayed valid word count after removal
-✅ Applied stemming (Porter Stemmer)
-✅ Applied lemmatization (WordNet Lemmatizer)
+1. Converted text to lowercase
+2. Removed numbers using Regex: \d+
+3. Removed special symbols using Regex: [^a-zA-Z\s]
+4. Removed extra spaces using Regex: \s+
+5. Removed punctuation using Regex: [^\w\s]
+6. Tokenized text into words
+7. Applied stop word removal
+8. Displayed stop word count
+9. Displayed valid word count after removal
+10. Applied stemming (Porter Stemmer)
+11. Applied lemmatization (WordNet Lemmatizer)
 
 #  Feature Extraction
-✅ One-Hot Encoding on cleaned valid words (tabular form)
-✅ TF-IDF on cleaned text
-✅ Displayed TF-IDF feature names
-✅ Displayed TF-IDF values in tabular form
+1. One-Hot Encoding on cleaned valid words (tabular form)
+2. TF-IDF on cleaned text
+3. Displayed TF-IDF feature names
+4. Displayed TF-IDF values in tabular form
 
 #  TF-IDF Scatter Plot Using Plotly
-✅ Created scatter plot using Plotly only
-✅ Displayed words and their TF-IDF scores
-✅ Included proper title, x-axis label, y-axis label
-✅ Interactive visualization with hover effects
+1. Created scatter plot using Plotly only
+2. Displayed words and their TF-IDF scores
+3. Included proper title, x-axis label, y-axis label
+4. Interactive visualization with hover effects
 
 #  How to Run the Code
 Option 1: Run Locally 
