@@ -1,13 +1,14 @@
+# NLP Assignment: PDF Text Processing and Feature Extraction
  # Overview
 This project implements complete Natural Language Processing (NLP) text processing on a real PDF document with 100+ pages
 from Google Scholar. The assignment demonstrates practical application of:
 
-1. PDF text extraction from academic papers.
-2. Comprehensive text preprocessing using Regular Expressions (Regex).
-3. Tokenization, stop word removal, stemming, and lemmatization.
-4. Feature extraction techniques: One-Hot Encoding and TF-IDF.
-5. Interactive data visualization using Plotly.
-6. Complete NLP pipeline from raw text to analysis.
+. PDF text extraction from academic papers.
+. Comprehensive text preprocessing using Regular Expressions (Regex).
+. Tokenization, stop word removal, stemming, and lemmatization.
+. Feature extraction techniques: One-Hot Encoding and TF-IDF.
+. Interactive data visualization using Plotly.
+. Complete NLP pipeline from raw text to analysis.
 
 #  Learning Objectives
 1. How to extract and process text from large PDF documents
@@ -16,27 +17,14 @@ from Google Scholar. The assignment demonstrates practical application of:
 4. Implement feature extraction for NLP tasks
 5. Create interactive visualizations for data analysis
 
-# Repository Structure
-text
-├── 📄 README.md                          
-├── 📓 nlp_feature_Engineering.py          
-├── 📄 academic_paper.pdf                
-├── 📊 tfidf_scatter_plot.html           
-├── 📊 tfidf_bubble_chart.html           
-├── 📈 tfidf_results.csv                 
-├── 📈 onehot_encoding_results.csv        
-├── 📝 preprocessing_results.txt         
-├── 📦 requirements.txt                   
-├── 🐍 setup.sh                           
-├── 🐍 setup.bat                         
-└── 🔧 .gitignore      
+# Features     
 
 #  PDF Reading and Text Extraction
-1. Selected PDF with 100+ pages from Google Scholar
-2. Read PDF using PyPDF2/PyMuPDF
-3. Extracted text from all pages
-4. Displayed total number of pages
-5. Showed sample extracted text
+. Selected PDF with 100+ pages from Google Scholar
+. Read PDF using PyPDF2/PyMuPDF
+. Extracted text from all pages
+. Displayed total number of pages
+. Showed sample extracted text
 
 #  Text Preprocessing with Regex
 1. Converted text to lowercase
