@@ -3,12 +3,12 @@
 This project implements complete Natural Language Processing (NLP) text processing on a real PDF document with 100+ pages
 from Google Scholar. The assignment demonstrates practical application of:
 
-. PDF text extraction from academic papers.
-. Comprehensive text preprocessing using Regular Expressions (Regex).
-. Tokenization, stop word removal, stemming, and lemmatization.
-. Feature extraction techniques: One-Hot Encoding and TF-IDF.
-. Interactive data visualization using Plotly.
-. Complete NLP pipeline from raw text to analysis.
+ 1.PDF text extraction from academic papers.
+2. Comprehensive text preprocessing using Regular Expressions (Regex).
+3. Tokenization, stop word removal, stemming, and lemmatization.
+4. Feature extraction techniques: One-Hot Encoding and TF-IDF.
+5. Interactive data visualization using Plotly.
+6. Complete NLP pipeline from raw text to analysis.
 
 #  Learning Objectives
 1. How to extract and process text from large PDF documents
@@ -19,12 +19,44 @@ from Google Scholar. The assignment demonstrates practical application of:
 
 # Features     
 
+Q1(a): PDF Reading and Text Extraction
+Read PDF files using pypdf library
+Extract text from all 120 pages
+Display total pages and sample text
+Character count statistics
+Q1(b): Text Preprocessing
+Lowercase Conversion: Convert all text to lowercase
+Remove Numbers: Using regex pattern r'\d+'
+Remove Special Symbols: Using regex pattern r'[^a-zA-Z\s]'
+Remove Extra Spaces: Using regex pattern r'\s+'
+Tokenization: Split text into individual words
+Stop Word Removal: Remove common English words
+Stemming: Apply Porter Stemmer algorithm
+Lemmatization: Apply WordNet Lemmatizer
+Statistics: Display counts of stop words and valid words
+Q1(c): Feature Extraction
+One-Hot Encoding
+Convert words into binary matrix representation
+Tabular display of encoding results
+Useful for machine learning algorithms
+TF-IDF (Term Frequency-Inverse Document Frequency)
+Calculate importance of words in documents
+Feature name extraction
+Tabular display of TF-IDF values
+Identify most relevant words
+Q1(d): Visualization
+TF-IDF Scatter Plot using Matplotlib
+Word index on X-axis
+TF-IDF scores on Y-axis
+Word labels displayed on plot
+Proper title and axis labels
+Saved as PNG image
 #  PDF Reading and Text Extraction
-. Selected PDF with 100+ pages from Google Scholar
-. Read PDF using PyPDF2/PyMuPDF
-. Extracted text from all pages
-. Displayed total number of pages
-. Showed sample extracted text
+1. Selected PDF with 100+ pages from Google Scholar
+2. Read PDF using PyPDF2/PyMuPDF
+3. Extracted text from all pages
+4. Displayed total number of pages
+5. Showed sample extracted text
 
 #  Text Preprocessing with Regex
 1. Converted text to lowercase
